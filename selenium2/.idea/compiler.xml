@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="selenium1" />
+        <module name="selenium2" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="selenium1" target="1.5" />
+      <module name="selenium2" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

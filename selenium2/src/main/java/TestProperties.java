@@ -10,7 +10,8 @@ public class TestProperties {
 
     private TestProperties(){
         try {
-            properties.load(new FileInputStream(new File("./" + System.getProperty("environment") + ".properties")));
+            //properties.load(new FileInputStream(new File("./" + System.getProperty("environment") + ".properties")));
+            properties.load(new FileInputStream(new File("D:\\Документы Бодрова\\Selenium\\selenium_2\\selenium2\\environment.properties")));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,32 +1,14 @@
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
-public class SberbankTest {
-    WebDriver driver;
-    String baseUrl;
-
-    @Before
-    public void beforeTest(){
-        System.setProperty("webdriver.chrome.driver", "drv/chromedriver.exe");
-        baseUrl = "http://www.sberbank.ru/ru/person";
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-        driver.get(baseUrl);
-    }
-
+public class SberbankTest extends BaseTest{
     @Test
     public void testSberbank(){
         Wait wait = new WebDriverWait(driver, 5, 1000);
@@ -104,8 +86,4 @@ public class SberbankTest {
         driver.findElement(locator).sendKeys(value);
     }
 
-    @After
-    public void afterTest(){
-        driver.quit();
-    }
 }
