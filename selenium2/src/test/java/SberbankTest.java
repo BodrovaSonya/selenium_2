@@ -26,9 +26,6 @@ public class SberbankTest extends BaseTest{
          */
 /*
 
-        driver.findElement(By.xpath("//*[contains(text(),\"Минимальная\")]")).click();
-        driver.findElement(By.xpath("//span[@class=\"b-button-block-center\"]//*[contains(text(),\"Оформить\")]")).click();
-
         //застрахованный
         fillField(By.name("insured0_surname"),"Ivanov");
         fillField(By.name("insured0_name"),"Ivan");

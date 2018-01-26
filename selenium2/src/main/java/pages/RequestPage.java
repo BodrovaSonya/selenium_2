@@ -16,6 +16,43 @@ public class RequestPage extends BasePage {
     @FindBy(xpath = "//span[@class=\"b-button-block-center\"]//*[contains(text(),\"Оформить\")]")
     WebElement execbButton;
 
+    @FindBy(name = "insured0_surname")
+    WebElement surname1;
+
+    @FindBy(name = "insured0_name")
+    WebElement name1;
+
+    @FindBy(name = "insured0_birthDate")
+    WebElement birthday1;
+
+    @FindBy(name = "surname")
+    WebElement surname;
+
+    @FindBy(name = "name")
+    WebElement name;
+
+    @FindBy(xpath = "//fieldset[@class='b-form-fieldset-splash b-form-margtop-fieldset']")
+    WebElement gender;
+
+    @FindBy(name = "birthDate")
+    WebElement birthDate;
+
+    @FindBy(name = "middlename")
+    WebElement middlename;
+
+    @FindBy(name = "passport_series")
+    WebElement passport_series;
+
+    @FindBy(name = "passport_number")
+    WebElement passport_number;
+
+    @FindBy(name = "issueDate")
+    WebElement issueDate;
+
+    @FindBy(name = "issuePlace")
+    WebElement issuePlace;
+
+
     public RequestPage (WebDriver driver) {
         PageFactory.initElements(driver,this);
         this.driver = driver;
@@ -29,4 +66,11 @@ public class RequestPage extends BasePage {
         execbButton.click();
     }
 
+
+    public void fillField(String fieldName, String value) {
+        switch (fieldName){
+            case "фамилия застрахованного":
+
+        }
+    }
 }
