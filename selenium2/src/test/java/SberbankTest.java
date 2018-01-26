@@ -21,26 +21,38 @@ public class SberbankTest extends BaseTest{
         RequestPage requestPage = new RequestPage(driver);
         requestPage.chooseSum("Минимальная");
         requestPage.execute();
+
+        requestPage.fillField("фамилия застрахованного", "Ivanov");
+        requestPage.fillField("имя застрахованного", "Ivan");
+        requestPage.fillField("дата рождения застрахованного", "01.01.1999");
+        requestPage.fillField("фамилия", "Петров");
+        requestPage.fillField("имя", "Петр");
+        requestPage.fillField("отчество", "Петрович");
+        requestPage.fillField("день рождения", "01.01.1989");
+        requestPage.fillField("серия паспорта", "1234");
+        requestPage.fillField("номер паспорта", "222222");
+        requestPage.fillField("дата выдачи", "14.03.2009");
+        requestPage.fillField("место выдачи", "Трололо");
+        requestPage.chooseGender("мужской");
+
+        requestPage.checkFields("фамилия застрахованного");
+        requestPage.checkFields("имя застрахованного");
+        requestPage.checkFields("дата рождения застрахованного");
+        requestPage.checkFields("фамилия");
+        requestPage.checkFields("имя");
+        requestPage.checkFields("отчество");
+        requestPage.checkFields("день рождения");
+        requestPage.checkFields("серия паспорта");
+        requestPage.checkFields("номер паспорта");
+        requestPage.checkFields("дата выдачи");
+        requestPage.checkFields("место выдачи");
+
+        requestPage.clickContinue();
+        requestPage.checkErrorMessage("Заполнены не все обязательные поля");
         /**
          * старая версия
          */
 /*
-
-        //застрахованный
-        fillField(By.name("insured0_surname"),"Ivanov");
-        fillField(By.name("insured0_name"),"Ivan");
-        fillField(By.name("insured0_birthDate"),"01.01.1999");
-
-        //страхователь
-        fillField(By.name("surname"),"Петров");
-        fillField(By.name("name"),"Петр");
-        fillField(By.name("middlename"),"Петрович");
-        fillField(By.name("birthDate"),"01.01.1989");
-        driver.findElement(By.xpath("//*[@class=\"b-radio-field-entity ng-pristine ng-untouched ng-valid\"][@name=\"male\"]")).click();
-        fillField(By.name("passport_series"),"1234");
-        fillField(By.name("passport_number"),"222222");
-        fillField(By.name("issueDate"),"14.03.2009");
-        fillField(By.name("issuePlace"),"Трололо");
 
         Assert.assertEquals("Ivanov",
                 driver.findElement(By.name("insured0_surname")).getAttribute("value"));
