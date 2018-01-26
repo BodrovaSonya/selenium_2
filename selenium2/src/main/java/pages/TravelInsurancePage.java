@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.Set;
+
 /**
  * Created by sonya on 26.01.2018.
  */
@@ -34,5 +36,15 @@ public class TravelInsurancePage extends BasePage {
 
     public void checkOutOnline (){
         image.click();
+    }
+
+    public void switchWindow () {
+        String parentWindow = driver.getWindowHandle();
+        Set<String> handles =  driver.getWindowHandles();
+        for(String windowHandle  : handles) {
+            if (!windowHandle.equals(parentWindow)) {
+                driver.switchTo().window(windowHandle);
+            }
+        }
     }
 }

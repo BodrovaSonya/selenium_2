@@ -1,9 +1,8 @@
 import org.junit.Test;
 import org.openqa.selenium.By;
 import pages.MainPage;
+import pages.RequestPage;
 import pages.TravelInsurancePage;
-
-import java.util.Set;
 
 public class SberbankTest extends BaseTest{
     @Test
@@ -17,26 +16,15 @@ public class SberbankTest extends BaseTest{
         travelInsurancePage.waitElement(travelInsurancePage.getTitle());
         travelInsurancePage.checkTitleErrorMessage("Страхование путешественников");
         travelInsurancePage.checkOutOnline();
+        travelInsurancePage.switchWindow();
 
-        String parentWindow = driver.getWindowHandle();
-        Set<String> handles =  driver.getWindowHandles();
-        for(String windowHandle  : handles) {
-            if (!windowHandle.equals(parentWindow)) {
-                driver.switchTo().window(windowHandle);
-            }
-        }
+        RequestPage requestPage = new RequestPage(driver);
+        requestPage.chooseSum("Минимальная");
+        requestPage.execute();
         /**
          * старая версия
          */
 /*
-        String parentWindow = driver.getWindowHandle();
-        Set<String> handles =  driver.getWindowHandles();
-        for(String windowHandle  : handles) {
-            if (!windowHandle.equals(parentWindow)) {
-                driver.switchTo().window(windowHandle);
-            }
-        }
-       // wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[contains(text(),\"Минимальная\")]"))));
 
         driver.findElement(By.xpath("//*[contains(text(),\"Минимальная\")]")).click();
         driver.findElement(By.xpath("//span[@class=\"b-button-block-center\"]//*[contains(text(),\"Оформить\")]")).click();
