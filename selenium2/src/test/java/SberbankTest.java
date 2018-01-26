@@ -1,29 +1,23 @@
-import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.MainPage;
+import pages.TravelInsurancePage;
 
 import java.util.Set;
 
 public class SberbankTest extends BaseTest{
     @Test
     public void testSberbank(){
-        Wait wait = new WebDriverWait(driver, 5, 1000);
-        //driver.findElement(By.xpath(".//div[@class=\"sbrf-div-list-inner --area bp-area header-container\"]//a[@aria-label=\"Раздел Застраховать себя  и имущество\"]")).click();
-        driver.findElement(By.xpath("//div[contains(@class,'bp-area header-container')]//a[@aria-label='Раздел Застраховать себя  и имущество']")).click();
-        WebElement menuItem = driver.findElement(By.xpath("//div[@class=\"sbrf-div-list-inner --area bp-area header-container\"]//a[contains(text(),'Страхование путешественников')]"));
-        wait.until(ExpectedConditions.visibilityOf(menuItem));
-        driver.findElement(By.xpath("//div[@class=\"sbrf-div-list-inner --area bp-area header-container\"]//a[contains(text(),'Страхование путешественников')]")).click();
+        MainPage mainPage = new MainPage(driver);
+        mainPage.selectSection("Застраховать себя  и имущество");
+        mainPage.waitElement(mainPage.getTravelInsuranceElement("Страхование путешественников"));
+        mainPage.travelInsurance("Страхование путешественников");
 
+        TravelInsurancePage travelInsurancePage = new TravelInsurancePage(driver);
+        travelInsurancePage.waitElement(travelInsurancePage.getTitle());
+        travelInsurancePage.checkTitleErrorMessage("Страхование путешественников");
+        travelInsurancePage.checkOutOnline();
 
-        WebElement title = driver.findElement(By.xpath("//*[@class='sbrf-rich-outer']/h1"));
-        wait.until(ExpectedConditions.visibilityOf(title));
-        Assert.assertEquals("Страхование путешественников",title.getText());
-
-        driver.findElement(By.xpath("//img[@src=\"/portalserver/content/atom/contentRepository/content/person/travel/banner-zashita-traveler.jpg?id=f6c836e1-5c5c-4367-b0d0-bbfb96be9c53\"]")).click();
         String parentWindow = driver.getWindowHandle();
         Set<String> handles =  driver.getWindowHandles();
         for(String windowHandle  : handles) {
@@ -31,7 +25,18 @@ public class SberbankTest extends BaseTest{
                 driver.switchTo().window(windowHandle);
             }
         }
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[contains(text(),\"Минимальная\")]"))));
+        /**
+         * старая версия
+         */
+/*
+        String parentWindow = driver.getWindowHandle();
+        Set<String> handles =  driver.getWindowHandles();
+        for(String windowHandle  : handles) {
+            if (!windowHandle.equals(parentWindow)) {
+                driver.switchTo().window(windowHandle);
+            }
+        }
+       // wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[contains(text(),\"Минимальная\")]"))));
 
         driver.findElement(By.xpath("//*[contains(text(),\"Минимальная\")]")).click();
         driver.findElement(By.xpath("//span[@class=\"b-button-block-center\"]//*[contains(text(),\"Оформить\")]")).click();
@@ -78,7 +83,7 @@ public class SberbankTest extends BaseTest{
         driver.findElement(By.xpath("//*[contains(text(),\"Продолжить\")]")).click();
         Assert.assertEquals("Заполнены не все обязательные поля",
                 driver.findElement(By.xpath("//*[@class=\"b-form-center-pos b-form-error-message\"][1]/div")).getText());
-
+*/
     }
 
     public void fillField(By locator, String value){

@@ -16,25 +16,25 @@ public class BaseTest {
     protected static String baseUrl;
     public static Properties properties = TestProperties.getInstance().getProperties();
 
-
     @BeforeClass
     public static void setUp() throws Exception {
-        String a = properties.getProperty("browser");
-        if (a.equals("firefox")) {
-            System.setProperty("webdriver.gecko.driver", properties.getProperty("webdriver.gecko.driver"));
-            driver = new FirefoxDriver();
-
-        } else if (a.equals("chrome")) {
-            System.setProperty("webdriver.chrome.driver", properties.getProperty("webdriver.chrome.driver"));
-            driver = new ChromeDriver();
-
-        } else {
-            System.setProperty("webdriver.chrome.driver", properties.getProperty("webdriver.chrome.driver"));
-            driver = new ChromeDriver();
+        switch (properties.getProperty("browser")) {
+            case "firefox":
+                System.setProperty("webdriver.gecko.driver", properties.getProperty("webdriver.gecko.driver"));
+                driver = new FirefoxDriver();
+                break;
+            case "chrome":
+                System.setProperty("webdriver.chrome.driver", properties.getProperty("webdriver.chrome.driver"));
+                driver = new ChromeDriver();
+                break;
+            default:
+                System.setProperty("webdriver.chrome.driver", properties.getProperty("webdriver.chrome.driver"));
+                driver = new ChromeDriver();
         }
 
         baseUrl = properties.getProperty("app.url");
-        System.out.println(baseUrl);
+        //System.out.println(baseUrl);
+        driver.get(baseUrl);
         driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }
