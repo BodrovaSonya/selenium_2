@@ -35,17 +35,17 @@ public class SberbankTest extends BaseTest{
         requestPage.fillField("место выдачи", "Трололо");
         requestPage.chooseGender("мужской");
 
-        requestPage.checkFields("фамилия застрахованного");
-        requestPage.checkFields("имя застрахованного");
-        requestPage.checkFields("дата рождения застрахованного");
-        requestPage.checkFields("фамилия");
-        requestPage.checkFields("имя");
-        requestPage.checkFields("отчество");
-        requestPage.checkFields("день рождения");
-        requestPage.checkFields("серия паспорта");
-        requestPage.checkFields("номер паспорта");
-        requestPage.checkFields("дата выдачи");
-        requestPage.checkFields("место выдачи");
+        requestPage.checkFields("фамилия застрахованного","Ivanov");
+        requestPage.checkFields("имя застрахованного","Ivan");
+        requestPage.checkFields("дата рождения застрахованного", "01.01.1999");
+        requestPage.checkFields("фамилия", "Петров");
+        requestPage.checkFields("имя", "Петр");
+        requestPage.checkFields("отчество", "Петрович");
+        requestPage.checkFields("день рождения", "");
+        requestPage.checkFields("серия паспорта", "1234");
+        requestPage.checkFields("номер паспорта", "222222");
+        requestPage.checkFields("дата выдачи", "14.03.2009");
+        requestPage.checkFields("место выдачи", "Трололо");
 
         requestPage.clickContinue();
         requestPage.checkErrorMessage("Заполнены не все обязательные поля");

@@ -133,40 +133,40 @@ public class RequestPage extends BasePage {
                 actualValue.contains(error));
     }
 
-    public void checkFields (String field){
+    public void checkFields (String field, String expected){
         switch (field){
             case "фамилия застрахованного":
-                Assert.assertEquals("Ivanov", surname1.getAttribute("value"));
+                Assert.assertEquals(expected, surname1.getAttribute("value"));
                 break;
             case "имя застрахованного":
-                Assert.assertEquals("Ivan", name1.getAttribute("value"));
+                Assert.assertEquals(expected, name1.getAttribute("value"));
                 break;
             case "дата рождения застрахованного":
-                Assert.assertEquals("01.01.1999", birthday1.getAttribute("value"));
+                Assert.assertEquals(expected, birthday1.getAttribute("value"));
                 break;
             case "фамилия":
-                Assert.assertEquals("Петров", surname.getAttribute("value"));
+                Assert.assertEquals(expected, surname.getAttribute("value"));
                 break;
             case "имя":
-                Assert.assertEquals("Петр", name.getAttribute("value"));
+                Assert.assertEquals(expected, name.getAttribute("value"));
                 break;
             case "день рождения":
-                Assert.assertEquals("", birthDate.getAttribute("value"));
+                Assert.assertEquals(expected, birthDate.getAttribute("value"));
                 break;
             case "отчество":
-                Assert.assertEquals("Петрович", middlename.getAttribute("value"));
+                Assert.assertEquals(expected, middlename.getAttribute("value"));
                 break;
             case "серия паспорта":
-                Assert.assertEquals("1234", passport_series.getAttribute("value"));
+                Assert.assertEquals(expected, passport_series.getAttribute("value"));
                 break;
             case "номер паспорта":
-                Assert.assertEquals("222222", passport_number.getAttribute("value"));
+                Assert.assertEquals(expected, passport_number.getAttribute("value"));
                 break;
             case "дата выдачи":
-                Assert.assertEquals("14.03.2009", issueDate.getAttribute("value"));
+                Assert.assertEquals(expected, issueDate.getAttribute("value"));
                 break;
             case "место выдачи":
-                Assert.assertEquals("Трололо", issuePlace.getAttribute("value"));
+                Assert.assertEquals(expected, issuePlace.getAttribute("value"));
                 break;
             default:
                 throw new AssertionError("Поле '"+field+"' не объявлено на странице");
